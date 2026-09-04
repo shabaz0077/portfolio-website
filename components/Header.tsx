@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState, useSyncExternalStore } from "react";
+import { HeaderClock } from "@/components/LiveTime";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -25,19 +26,22 @@ export function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-50 border-b border-cyan-400/20 bg-ink/80 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link href="/" className="font-semibold tracking-wide text-cyan-300">
-          Shahbaz Ahmed
-        </Link>
+    <header className="sticky top-0 z-50 border-b border-line bg-header/90 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+        <div className="flex min-w-0 items-center gap-4">
+          <Link href="/" className="shrink-0 font-semibold tracking-wide text-accent">
+            Shahbaz Ahmed
+          </Link>
+          <HeaderClock className="hidden sm:block" />
+        </div>
         <nav className="hidden items-center gap-6 md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "text-sm transition hover:text-cyan-300",
-                pathname === link.href ? "text-cyan-300" : "text-zinc-300",
+                "text-sm transition hover:text-accent",
+                pathname === link.href ? "text-accent" : "text-muted",
               )}
             >
               {link.label}
@@ -46,7 +50,7 @@ export function Header() {
           <button
             type="button"
             aria-label="Toggle dark mode"
-            className="rounded-full border border-cyan-400/30 p-2 text-cyan-200 hover:bg-cyan-400/10"
+            className="rounded-full border border-line p-2 text-accent hover:bg-accent/10"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           >
             {mounted && theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
@@ -54,7 +58,7 @@ export function Header() {
         </nav>
         <button
           type="button"
-          className="rounded-md p-2 text-cyan-200 md:hidden"
+          className="rounded-md p-2 text-accent md:hidden"
           onClick={() => setOpen((value) => !value)}
           aria-label="Toggle navigation"
         >
@@ -62,7 +66,8 @@ export function Header() {
         </button>
       </div>
       {open ? (
-        <nav className="flex flex-col gap-3 border-t border-cyan-400/10 px-4 py-4 md:hidden">
+        <nav className="flex flex-col gap-3 border-t border-line px-4 py-4 md:hidden">
+          <HeaderClock />
           {links.map((link) => (
             <Link
               key={link.href}
@@ -70,7 +75,7 @@ export function Header() {
               onClick={() => setOpen(false)}
               className={cn(
                 "text-sm",
-                pathname === link.href ? "text-cyan-300" : "text-zinc-300",
+                pathname === link.href ? "text-accent" : "text-muted",
               )}
             >
               {link.label}
@@ -78,7 +83,7 @@ export function Header() {
           ))}
           <button
             type="button"
-            className="w-fit rounded-full border border-cyan-400/30 px-3 py-1 text-sm"
+            className="w-fit rounded-full border border-line px-3 py-1 text-sm text-foreground"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           >
             Toggle theme

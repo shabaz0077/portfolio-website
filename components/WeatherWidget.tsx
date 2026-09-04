@@ -39,31 +39,31 @@ export function WeatherWidget() {
   }
 
   return (
-    <section id="weather" className="rounded-2xl border border-cyan-400/20 bg-white/5 p-5">
-      <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Live Weather</p>
+    <section id="weather" className="card rounded-2xl p-5">
+      <p className="text-xs uppercase tracking-[0.2em] text-accent">Live Weather</p>
       <form onSubmit={onSubmit} className="mt-3 flex gap-2">
         <input
           value={city}
           onChange={(event) => setCity(event.target.value)}
-          className="w-full rounded-lg border border-cyan-400/20 bg-black/30 px-3 py-2 text-sm outline-none focus:border-cyan-300"
+          className="field"
           placeholder="Search a city"
         />
         <button
           type="submit"
-          className="rounded-lg bg-cyan-400 px-3 py-2 text-sm font-medium text-black"
+          className="rounded-lg bg-accent px-3 py-2 text-sm font-medium text-ink"
         >
           {loading ? "..." : "Go"}
         </button>
       </form>
-      {error ? <p className="mt-3 text-sm text-rose-300">{error}</p> : null}
+      {error ? <p className="mt-3 text-sm text-rose-500">{error}</p> : null}
       {weather ? (
         <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-          <p className="col-span-2 text-2xl font-semibold">
+          <p className="col-span-2 text-2xl font-semibold text-foreground">
             {weather.city} · {weather.temperature}°C
           </p>
-          <p className="capitalize text-zinc-300">{weather.condition}</p>
-          <p className="text-zinc-300">Humidity {weather.humidity}%</p>
-          <p className="text-zinc-300">Wind {weather.windSpeed} m/s</p>
+          <p className="capitalize text-muted">{weather.condition}</p>
+          <p className="text-muted">Humidity {weather.humidity}%</p>
+          <p className="text-muted">Wind {weather.windSpeed} m/s</p>
         </div>
       ) : null}
     </section>

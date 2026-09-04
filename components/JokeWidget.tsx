@@ -32,22 +32,22 @@ export function JokeWidget() {
   }, [loadJoke]);
 
   return (
-    <section className="rounded-2xl border border-fuchsia-400/20 bg-white/5 p-5">
+    <section className="card rounded-2xl p-5">
       <div className="flex items-center justify-between gap-3">
-        <p className="text-xs uppercase tracking-[0.2em] text-fuchsia-300">Random Joke</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-accent-2">Random Joke</p>
         <button
           type="button"
           onClick={() => void loadJoke()}
-          className="rounded-full border border-fuchsia-300/40 px-3 py-1 text-xs text-fuchsia-100 hover:bg-fuchsia-400/10"
+          className="rounded-full border border-accent-2/40 px-3 py-1 text-xs text-accent-2 hover:bg-accent-2/10"
         >
           {loading ? "Loading..." : "New joke"}
         </button>
       </div>
-      {error ? <p className="mt-3 text-sm text-rose-300">{error}</p> : null}
+      {error ? <p className="mt-3 text-sm text-rose-500">{error}</p> : null}
       {joke ? (
-        <div className="mt-3 space-y-2 text-sm text-zinc-200">
+        <div className="mt-3 space-y-2 text-sm text-muted">
           <p>{joke.setup}</p>
-          <p className="font-medium text-cyan-200">{joke.punchline}</p>
+          <p className="font-medium text-accent">{joke.punchline}</p>
         </div>
       ) : null}
     </section>

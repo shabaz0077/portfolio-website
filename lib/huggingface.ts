@@ -48,21 +48,32 @@ export async function generateChatReply(
     { role: "user", content: userMessage },
   ];
 
-  const response = await fetch(`https://router.huggingface.co/v1/chat/completions`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model: HF_MODEL,
-      messages,
-      max_tokens: 220,
-      temperature: 0.6,
-    }),
-  });
+  try {
+    const response = await fetch(`https://router.huggingface.co/v1/chat/completions`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: HF_MODEL,
+        messages,
+        max_tokens: 220,
+        temperature: 0.6,
+      }),
+      signal: AbortSignal.timeout(8000),
+    });
 
-  if (!response.ok) {
+    if (response.ok) {
+      const payload = (await response.json()) as {
+        choices?: Array<{ message?: { content?: string } }>;
+      };
+      const reply = payload.choices?.[0]?.message?.content?.trim();
+      if (reply) {
+        return reply;
+      }
+    }
+
     const inference = await fetch(
       `https://api-inference.huggingface.co/models/${HF_MODEL}`,
       {
@@ -75,6 +86,7 @@ export async function generateChatReply(
           inputs: `${SHAHBAZ_SYSTEM_PROMPT}\n\nUser: ${userMessage}\nAssistant:`,
           parameters: { max_new_tokens: 180, temperature: 0.6, return_full_text: false },
         }),
+        signal: AbortSignal.timeout(8000),
       },
     );
 
@@ -89,11 +101,7 @@ export async function generateChatReply(
     }
 
     return fallbackReply(userMessage);
+  } catch {
+    return fallbackReply(userMessage);
   }
-
-  const payload = (await response.json()) as {
-    choices?: Array<{ message?: { content?: string } }>;
-  };
-  const reply = payload.choices?.[0]?.message?.content?.trim();
-  return reply || fallbackReply(userMessage);
 }

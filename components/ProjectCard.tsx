@@ -12,15 +12,15 @@ export function ProjectCard({ title, description, tech, href, id }: ProjectCardP
   const content = (
     <article
       id={id}
-      className="h-full rounded-2xl border border-cyan-400/20 bg-white/5 p-5 shadow-[0_0_40px_rgba(34,211,238,0.08)] transition hover:border-cyan-300/50"
+      className="card h-full rounded-2xl p-5 transition hover:-translate-y-0.5 hover:border-accent"
     >
-      <h3 className="text-lg font-semibold text-cyan-200">{title}</h3>
-      <p className="mt-2 text-sm text-zinc-300">{description}</p>
+      <h3 className="text-lg font-semibold text-accent">{title}</h3>
+      <p className="mt-2 text-sm text-muted">{description}</p>
       <div className="mt-4 flex flex-wrap gap-2">
         {tech.map((item) => (
           <span
             key={item}
-            className="rounded-full border border-fuchsia-400/30 bg-fuchsia-500/10 px-2 py-1 text-xs text-fuchsia-200"
+            className="rounded-full border border-accent-2/30 bg-accent-2/10 px-2 py-1 text-xs text-accent-2"
           >
             {item}
           </span>

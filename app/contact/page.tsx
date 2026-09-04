@@ -38,54 +38,54 @@ export default function ContactPage() {
   return (
     <div className="mx-auto grid max-w-5xl gap-8 px-4 py-12 md:grid-cols-2">
       <section>
-        <h1 className="text-4xl font-semibold">Contact</h1>
-        <p className="mt-3 text-zinc-300">
+        <h1 className="text-4xl font-semibold text-foreground">Contact</h1>
+        <p className="mt-3 text-muted">
           Send a note about roles, collaborations, or questions about the demos.
         </p>
-        <div className="mt-6 space-y-2 text-sm text-zinc-300">
+        <div className="mt-6 space-y-2 text-sm text-muted">
           <p>{cvData.email}</p>
           <p>{cvData.phone}</p>
           <p>{cvData.location}</p>
         </div>
       </section>
-      <form onSubmit={(event) => void onSubmit(event)} className="space-y-4 rounded-2xl border border-cyan-400/20 p-6">
-        <label className="block text-sm">
+      <form onSubmit={(event) => void onSubmit(event)} className="card space-y-4 rounded-2xl p-6">
+        <label className="block text-sm text-foreground">
           Name
           <input
             required
             value={name}
             onChange={(event) => setName(event.target.value)}
-            className="mt-1 w-full rounded-lg border border-cyan-400/20 bg-black/30 px-3 py-2"
+            className="field mt-1"
           />
         </label>
-        <label className="block text-sm">
+        <label className="block text-sm text-foreground">
           Email
           <input
             required
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="mt-1 w-full rounded-lg border border-cyan-400/20 bg-black/30 px-3 py-2"
+            className="field mt-1"
           />
         </label>
-        <label className="block text-sm">
+        <label className="block text-sm text-foreground">
           Message
           <textarea
             required
             rows={5}
             value={message}
             onChange={(event) => setMessage(event.target.value)}
-            className="mt-1 w-full rounded-lg border border-cyan-400/20 bg-black/30 px-3 py-2"
+            className="field mt-1"
           />
         </label>
         <button
           type="submit"
           disabled={sending}
-          className="rounded-full bg-cyan-400 px-5 py-2 text-sm font-medium text-black"
+          className="rounded-full bg-accent px-5 py-2 text-sm font-medium text-ink"
         >
           {sending ? "Sending..." : "Send message"}
         </button>
-        {status ? <p className="text-sm text-cyan-200">{status}</p> : null}
+        {status ? <p className="text-sm text-accent">{status}</p> : null}
       </form>
     </div>
   );

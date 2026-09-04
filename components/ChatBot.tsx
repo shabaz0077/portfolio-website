@@ -58,13 +58,13 @@ export function ChatBot() {
   }
 
   return (
-    <section id="chat" className="rounded-2xl border border-cyan-400/20 bg-white/5 p-5">
-      <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">AI Chatbot</p>
+    <section id="chat" className="card rounded-2xl p-5">
+      <p className="text-xs uppercase tracking-[0.2em] text-accent">AI Chatbot</p>
       <div className="mt-3 max-h-72 space-y-3 overflow-y-auto text-sm">
         {messages.map((item, index) => (
           <p
             key={`${item.role}-${index}`}
-            className={item.role === "user" ? "text-fuchsia-200" : "text-zinc-200"}
+            className={item.role === "user" ? "text-accent-2" : "text-muted"}
           >
             <span className="font-semibold">{item.role === "user" ? "You" : "Shahbaz bot"}:</span>{" "}
             {item.content}
@@ -75,10 +75,10 @@ export function ChatBot() {
         <input
           value={input}
           onChange={(event) => setInput(event.target.value)}
-          className="w-full rounded-lg border border-cyan-400/20 bg-black/30 px-3 py-2 text-sm outline-none focus:border-cyan-300"
+          className="field"
           placeholder="Ask about Shahbaz..."
         />
-        <button type="submit" className="rounded-lg bg-cyan-400 px-3 py-2 text-sm text-black">
+        <button type="submit" className="rounded-lg bg-accent px-3 py-2 text-sm text-ink">
           {loading ? "..." : "Send"}
         </button>
       </form>
