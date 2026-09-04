@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shahbaz Ahmed Portfolio
 
-## Getting Started
+Production-ready personal site for Shahbaz Ahmed, App Developer in Dubai. Built with Next.js, TypeScript, Tailwind CSS, and live demo APIs.
 
-First, run the development server:
+## Pages
+
+- `/` Home with hero, stats, featured projects, live Dubai time, and jokes
+- `/about` CV with resume download
+- `/projects` Seven project cards plus OCR, chatbot, weather, anime, jokes, and time widgets
+- `/contact` Name, email, and message form
+
+## Local setup
+
+1. Copy `.env.example` to `.env.local`
+2. Add Hugging Face, OpenWeather, and SendGrid keys
+3. Install and run:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API routes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `POST /api/chat` Hugging Face chatbot with KV/memory history
+- `GET /api/weather?city=Dubai` OpenWeatherMap with 10-minute cache
+- `GET /api/anime?search=Naruto` Jikan API with 1-hour cache
+- `GET /api/joke` Official Joke API
+- `POST /api/contact` SendGrid email
 
-## Learn More
+Without real keys, chat, weather, and contact still return safe local fallbacks so the site can be demoed.
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Push to GitHub, import the repo in Vercel, and add:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `HUGGING_FACE_API_KEY`
+- `OPENWEATHER_API_KEY`
+- `SENDGRID_API_KEY`
+- `SENDGRID_FROM_EMAIL`
+- `SENDGRID_TO_EMAIL`
+- `KV_REST_API_URL`
+- `KV_REST_API_TOKEN`

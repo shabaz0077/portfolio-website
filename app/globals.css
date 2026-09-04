@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #07060f;
+  --foreground: #f4f7ff;
+  --ink: #07060f;
+  --neon-cyan: #22d3ee;
+  --neon-fuchsia: #e879f9;
+  --neon-violet: #8b5cf6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-fuchsia: var(--neon-fuchsia);
+  --color-neon-violet: var(--neon-violet);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #07060f;
+  --foreground: #f4f7ff;
+}
+
+.light {
+  --background: #f7f4ff;
+  --foreground: #161022;
+}
+
+html,
+body {
+  min-height: 100%;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(232, 121, 249, 0.18), transparent 30%),
+    radial-gradient(circle at 90% 0%, rgba(34, 211, 238, 0.16), transparent 28%),
+    radial-gradient(circle at 50% 100%, rgba(139, 92, 246, 0.18), transparent 35%),
+    var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
 }
