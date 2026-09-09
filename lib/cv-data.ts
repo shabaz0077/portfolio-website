@@ -73,39 +73,23 @@ export const cvData = {
     "Gaming",
     "Sports",
   ],
-  projects: [
-    {
-      title: "Prescription OCR Pipeline",
-      description:
-        "AI/ML pipeline for extracting text and structured data from prescription images using VLM",
-      tech: ["Python", "NestJS", "Docker", "AI/ML"],
-    },
-    {
-      title: "Arduino Project",
-      description:
-        "Open-source electronics platform project. Managed team of 3, delivered 10+ presentations.",
-      tech: ["Arduino", "Electronics", "Project Management"],
-    },
-  ],
+  github: "https://github.com/shabaz0077",
+  aboutStory:
+    "I grew up in Dubai and studied Information Technology at Amity University. The path into software was not a straight line: customer service at Dubai Airport taught me how people actually use systems, then the PureCS/Dawak internship let me build NestJS services and an OCR pipeline for a digital pharmacy. I like backend work, AI tooling, and shipping small live demos that prove an idea instead of only describing it.",
+  homeTagline: "Backend services, AI tools, and small live demos that prove an idea.",
 };
 
-export const featuredProjects = [
-  {
-    title: "Prescription OCR",
-    description: "AI/ML pipeline that extracts structured data from prescription images using VLM.",
-    tech: ["Python", "NestJS", "Docker", "OCR"],
-    href: "/projects#ocr",
-  },
-  {
-    title: "AI Chatbot",
-    description: "Portfolio assistant powered by Hugging Face that answers questions about Shahbaz.",
-    tech: ["Next.js", "Hugging Face", "Vercel KV"],
-    href: "/projects#chat",
-  },
-  {
-    title: "Live Weather",
-    description: "Dubai-first weather widget with city search, caching, and OpenWeatherMap data.",
-    tech: ["OpenWeatherMap", "Next.js"],
-    href: "/projects#weather",
-  },
+export const skillShowcase = [
+  { name: "Next.js", group: "Frontend" },
+  { name: "React", group: "Frontend" },
+  { name: "TypeScript", group: "Frontend" },
+  { name: "NestJS", group: "Backend" },
+  { name: "Node.js", group: "Backend" },
+  { name: "Python", group: "Backend" },
+  { name: "OCR / VLM", group: "AI/ML" },
+  { name: "Hugging Face", group: "AI/ML" },
+  { name: "Docker", group: "DevOps" },
+  { name: "Git", group: "DevOps" },
+  { name: "Linux", group: "DevOps" },
+  { name: "SQL", group: "Data" },
 ];

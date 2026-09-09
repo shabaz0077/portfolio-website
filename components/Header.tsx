@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
+  { href: "/projects", label: "Work" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -26,31 +26,37 @@ export function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-header/90 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+    <header className="sticky top-0 z-50 border-b border-line/80 bg-header/70 backdrop-blur-2xl">
+      <div className="section-shell flex items-center justify-between gap-4 py-3">
         <div className="flex min-w-0 items-center gap-4">
-          <Link href="/" className="shrink-0 font-semibold tracking-wide text-accent">
+          <Link href="/" className="shrink-0 font-semibold tracking-wide text-foreground">
             Shahbaz Ahmed
           </Link>
           <HeaderClock className="hidden sm:block" />
         </div>
         <nav className="hidden items-center gap-6 md:flex">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "text-sm transition hover:text-accent",
-                pathname === link.href ? "text-accent" : "text-muted",
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "relative text-sm transition hover:text-accent-3",
+                  active ? "text-accent-3" : "text-muted",
+                )}
+              >
+                {link.label}
+                {active ? (
+                  <span className="absolute -bottom-2 left-0 h-0.5 w-full rounded-full bg-accent-3 shadow-[0_0_12px_rgba(65,105,225,0.7)]" />
+                ) : null}
+              </Link>
+            );
+          })}
           <button
             type="button"
             aria-label="Toggle dark mode"
-            className="rounded-full border border-line p-2 text-accent hover:bg-accent/10"
+            className="rounded-full border border-line p-2 text-accent-3 hover:shadow-[0_0_16px_rgba(65,105,225,0.35)]"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           >
             {mounted && theme === "light" ? <Moon size={16} /> : <Sun size={16} />}

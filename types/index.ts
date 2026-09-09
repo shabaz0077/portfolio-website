@@ -30,6 +30,9 @@ export type AnimeResult = {
   rating: number | null;
   image: string;
   synopsis: string;
+  year: number | null;
+  type: string;
+  url: string;
 };
 
 export type JokeData = {
