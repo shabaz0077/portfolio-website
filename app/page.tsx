@@ -11,7 +11,7 @@ const facts = [
 ];
 
 export default function Home() {
-  const featured = allProjects.filter((item) => item.featured).slice(0, 3);
+  const featured = allProjects.slice(0, 3);
 
   return (
     <div>
