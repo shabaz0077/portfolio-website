@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ParticleField } from "@/components/ParticleField";
 import { ProjectCard } from "@/components/ProjectCard";
 import { cvData } from "@/lib/cv-data";
-import { getFeaturedProjects } from "@/lib/projects";
+import { allProjects } from "@/lib/projects";
 
 const facts = [
   { label: "Based in", value: cvData.location },
@@ -11,7 +11,7 @@ const facts = [
 ];
 
 export default function Home() {
-  const featured = getFeaturedProjects();
+  const featured = allProjects.filter((item) => item.featured).slice(0, 3);
 
   return (
     <div>
